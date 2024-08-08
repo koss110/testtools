@@ -5,8 +5,8 @@ tools:
     alias: s3restore
     content: |
       # Set default values for environment variables
-      REPO_URL="${REPO_URL:-https://github.com/kubiya-solutions-engineering/publictooldef}"
-      REPO_NAME="${REPO_NAME:-publictooldef}"
+      REPO_URL="${REPO_URL:-https://github.com/Kubiya-Barak/testtools}"
+      REPO_NAME="${REPO_NAME:-testtools}"
       SOURCE_CODE_DIR="${SOURCE_CODE_DIR:-src}"
       REPO_BRANCH="${REPO_BRANCH:-main}"
       REPO_DIR="${REPO_DIR:-$REPO_NAME}"
@@ -18,7 +18,7 @@ tools:
       mkdir -p "$APT_CACHE_DIR"
       mkdir -p "$BIN_DIR"
       mkdir -p "$PIP_CACHE_DIR"
-
+      echo "starting to clone"
       # Clone repository if not already cloned
       if [ ! -d "$REPO_DIR" ]; then
         if [ -n "$TOOLS_GH_TOKEN" ]; then
@@ -31,17 +31,16 @@ tools:
           git clone --branch "$REPO_BRANCH" "$REPO_URL" "$REPO_DIR" > /dev/null
         fi
       fi
-
+      echo "finished clone"
       # cd into the cloned repo
       cd "${REPO_DIR}/${SOURCE_CODE_DIR}"
 
       # Build the Go script
       go get -d ./...
       go build -o s3-restore
-
+      ls
       # Make the Go script executable and run it
       export PATH="${PATH}:/${REPO_DIR}/${SOURCE_CODE_DIR}"
-      exec ./s3-restore --bucket_paths "{{ .bucket_paths }}" --region "{{ .region }}"
     args:
       - name: bucket_paths
         description: The list of S3 bucket paths to restore, as a comma-separated string
@@ -50,10 +49,6 @@ tools:
         description: The AWS region
         required: true
     env:
-      - AWS_PROFILE
-      - SLACK_API_TOKEN
-      - SLACK_CHANNEL_ID
-      - SLACK_THREAD_TS
       - KUBIYA_AGENT_UUID
       - KUBIYA_USER_ORG
       - KUBIYA_API_KEY
