@@ -5,10 +5,10 @@ tools:
     alias: s3restore
     content: |
       # Set default values for environment variables
-      REPO_BRANCH="${REPO_BRANCH:-main}"
+      REPO_BRANCH="${REPO_BRANCH:-release}"
       GIT_ORG="Kubiya-Barak"
       REPO_NAME="${REPO_NAME:-testtools}"
-      SOURCE_CODE_DIR="${SOURCE_CODE_DIR:-src}"
+      SOURCE_CODE_DIR="${SOURCE_CODE_DIR:-test/src}"
       REPO_DIR="${REPO_DIR:-$REPO_NAME}"
       BIN_DIR="${BIN_DIR:-/usr/local/bin}"
       APT_CACHE_DIR="${APT_CACHE_DIR:-/var/cache/apt/archives}"
