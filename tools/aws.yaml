@@ -1,0 +1,66 @@
+tools:
+  - name: aws-s3-list
+    description: "List S3 buckets using AWS CLI"
+    alias: "awss3list"
+    image: "amazon/aws-cli"
+    content: |
+      aws s3 ls
+    args: []
+    env:
+      - "AWS_ACCESS_KEY_ID"
+      - "AWS_SECRET_ACCESS_KEY"
+      - "AWS_DEFAULT_REGION"
+      - "AWS_SESSION_TOKEN"
+
+  - name: aws-list-secrets
+    description: "List S3 secret manager secrets using AWS CLI"
+    alias: "awslistsecrets"
+    image: "amazon/aws-cli"
+    content: |
+      aws secretsmanager list-secrets --max-items {{ .max_items }}
+    args:
+      - name: max_items
+        description: 'Maximum number of items to list'
+        required: false
+    env:
+      - "AWS_ACCESS_KEY_ID"
+      - "AWS_SECRET_ACCESS_KEY"
+      - "AWS_DEFAULT_REGION"
+      - "AWS_SESSION_TOKEN"
+
+  - name: aws-s3-list-file
+    description: "List S3 buckets using AWS CLI"
+    alias: "awss3listfile"
+    image: "amazon/aws-cli"
+    content: |
+      aws s3 ls
+    args: []
+    with_files:
+      - source: $HOME/.aws/credentials
+        destination: ~/.aws/credentials
+
+  - name: cat-file
+    description: "cat file"
+    alias: "cat-file"
+    image: "alpine:20240807"
+    content: |
+      cat /root/bla.txt
+    args: []
+    with_files:
+      - source: $HOME/bla.txt
+        destination: /root/bla.txt
+
+  - name: list-env
+    description: "This tool lists all the env vars"
+    alias: "listenv"
+    image: "amazon/aws-cli"
+    content: |
+      env
+    args:
+      - name: max_items
+        description: 'Maximum number of items to list'
+        required: false
+    env:
+      - "TEST1"
+      - "TEST2"
+      - "JFROG_ACCESS_TOKEN"
