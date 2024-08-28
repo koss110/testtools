@@ -13,8 +13,8 @@ tools:
     env:
       - "AWS_PROFILE"
     with_files:
-      source: /home/appuser/.aws/credentials
-      destination: /root/.aws/credentials
+      - source: /home/appuser/.aws/credentials
+        destination: /root/.aws/credentials
     metadata:
       category: 
         - "AWS"
