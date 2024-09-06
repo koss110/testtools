@@ -1,6 +1,7 @@
 tools:
   - name: aws_cli
     image: amazon/aws-cli
+    long_running: true
     description: "Runs AWS CLI commands - recieves the command to run as an argument"
     alias: aws
     content: |
