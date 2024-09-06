@@ -1,10 +1,14 @@
 tools:
   - name: aws_cli
     image: amazon/aws-cli
-    description: "Runs AWS CLI commands - recieves the command to run as an argument"
+    description: "Runs AWS CLI commands - receives the command to run as an argument"
     alias: aws
     content: |
+      echo "Executing AWS CLI command: aws {{.command}}"
+      echo "---------------------------------------------"
       aws {{.command}}
+      echo "---------------------------------------------"
+      echo "AWS CLI command execution completed"
     args:
       - name: command
         description: "The AWS CLI command to run (example: s3 ls). Do not add `aws` at the front."
