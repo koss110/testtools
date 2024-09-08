@@ -15,6 +15,3 @@ tools:
         required: true
     env:
       - AWS_PROFILE
-    with_files:
-      - source: $HOME/.aws/credentials
-        destination: /root/.aws/credentials
