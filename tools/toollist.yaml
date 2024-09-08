@@ -9,6 +9,8 @@ tools:
       - name: command
         description: "The AWS CLI command to run (example: s3 ls). Do not add `aws` at the front."
         required: true
-    env: []
+    env:
+      - AWS_PROFILE
     with_files:
-      - destination: /root/.aws/credentials
+      - source: $HOME/.aws/credentials
+        destination: /root/.aws/credentials
