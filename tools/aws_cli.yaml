@@ -1,23 +1,13 @@
 tools:
-  - name: aws_cli
-    image: amazon/aws-cli
-    description: "Runs AWS CLI commands - receives the command to run as an argument"
-    alias: "aws"
+  - name: aws-s3-list
+    description: "List S3 buckets using AWS CLI"
+    alias: "awss3list"
+    image: "amazon/aws-cli"
     content: |
-      echo "Executing AWS CLI command: aws {{.command}}"
-      echo "---------------------------------------------"
-      aws {{.command}}
-      echo "---------------------------------------------"
-      echo "AWS CLI command execution completed"
-    args:
-      - name: command
-        description: "The AWS CLI command to run (example: s3 ls). Do not add `aws` at the front."
-        required: true
+      aws s3 ls
+    args: []
     env:
       - "AWS_ACCESS_KEY_ID"
       - "AWS_SECRET_ACCESS_KEY"
       - "AWS_DEFAULT_REGION"
       - "AWS_SESSION_TOKEN"
-    with_files:
-      - source: $HOME/.aws/credentials
-        destination: /root/.aws/credentials
