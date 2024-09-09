@@ -10,5 +10,5 @@ tools:
         description: "The AWS CLI command to run (example: s3 ls). Do not add `aws` at the front."
         required: true
     with_files:
-      - source: $HOME/.aws/credentials
-        destination: $HOME/.aws/credentials
+      - source: /root/.aws/credentials
+        destination: ~/.aws/credentials
