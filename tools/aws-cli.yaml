@@ -11,4 +11,4 @@ tools:
         required: true
     with_files:
       - source: /root/.aws/credentials
-        destination: $HOME/.aws/credentials
+        destination: /root/.aws/credentials
