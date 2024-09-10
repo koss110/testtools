@@ -14,6 +14,6 @@ tools:
       - source: $HOME/.aws/config
         destination: /root/.aws/config
     args:
-      - name: AWS_PROFILE
+      - name: aws_profile
         description: 'The aws profile to use'
         required: true
