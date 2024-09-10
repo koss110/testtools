@@ -5,7 +5,6 @@ tools:
     image: "amazon/aws-cli"
     content: |
       echo "starting\n"
-      export AWS_PROFILE={{ .aws_profile }}
       aws s3 ls
       echo "\nended"
     args: []
