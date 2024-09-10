@@ -1,0 +1,19 @@
+tools:
+  - name: aws-s3-ls
+    description: "List S3 buckets using AWS CLI"
+    alias: "awss3list"
+    image: "amazon/aws-cli"
+    content: |
+      echo "starting\n"
+      export AWS_PROFILE={{ .aws_profile }}
+      aws s3 ls
+      echo "\nended"
+    with_files:
+      - source: $HOME/.aws/credentials
+        destination: /root/.aws/credentials
+      - source: $HOME/.aws/config
+        destination: /root/.aws/config
+    args:
+      - name: AWS_PROFILE
+        description: 'The aws profile to use'
+        required: true
