@@ -14,3 +14,5 @@ tools:
         destination: /root/.aws/credentials
       - source: $HOME/.aws/config
         destination: /root/.aws/config
+    env:
+      - "AWS_PROFILE"
