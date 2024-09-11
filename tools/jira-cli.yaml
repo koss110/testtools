@@ -1,0 +1,16 @@
+tools:
+  - name: jira_cli
+    image: ghcr.io/kubiyabot/jira-cli:latest
+    description: "Runs JIRA CLI commands - recieves the command to run as an argument"
+    alias: jira
+    content: |
+      jira {{.command}}
+    args:
+      - name: command
+        description: "The JIRA CLI command to run. Do not add `jira` at the front."
+        required: true
+      - name: jira-workspace-name
+        description: "Which Jira work space to use"
+        required: false
+    env:
+      - "JIRA_OAUTH_TOKEN"
