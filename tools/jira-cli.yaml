@@ -1,14 +1,18 @@
 tools:
   - name: jira_cli
     image: ghcr.io/kubiyabot/jira-cli:latest
-    description: "Runs JIRA CLI commands - recieves the command to run as an argument"
+    description: "Runs JIRA CLI commands - receives the command to run as an argument"
     alias: jira
     content: |
-      jira {{.command}} --bcd
+      workspace="{{ .workspace_name }}"
+      if [ -n "$workspace" ]; then
+        export JIRA_WORKSPACE_NAME="${workspace}"
+      fi
+      jira {{.command}}
     args:
       - name: command
         description: "The JIRA CLI command to run. Do not add `jira` at the front."
         required: true
-    env:
-      - "JIRA_OAUTH_TOKEN"
-      - "JIRA_WORKSPACE_NAME"
+      - name: workspace_name
+        description: "The Jira workspace name to work against"
+        required: false
