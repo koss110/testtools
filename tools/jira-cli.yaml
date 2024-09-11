@@ -16,3 +16,5 @@ tools:
       - name: workspace_name
         description: "The Jira workspace name to work against"
         required: false
+    env:
+      - "JIRA_OAUTH_TOKEN"
