@@ -31,11 +31,12 @@ ec2_describe_instances = AWSCliTool(
 )
 
 ec2_start_instance = AWSCliTool(
-    name="ec2_start_instance",
+    name=;
+    "ec2_start_instance",
     description="Start an EC2 instance",
     content="aws ec2 start-instances --instance-ids $instance_id",
     args=[
-        Arg(name="instance_id", type="str", description="Instance ID to start (e.g., 'i-1234567890abcdef0')", required=True),
+        Arg(quired=True),
     ],
     mermaid_diagram="""
     graph TD
