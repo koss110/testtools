@@ -1,7 +1,7 @@
 tools:
   - name: jira_cli
     image: ghcr.io/kubiyabot/jira-cli:latest
-    description: "Runs JIRA CLI commands - receives the command to run as an argument. USAGE jira <command> <subcommand> [flags]. MAIN COMMANDS: help,board,epic,issue,open,project,sprint. Examples: issue comment add, issue view"
+    description: "Runs JIRA CLI commands. USAGE: jira <command> <subcommand> [flags]. MAIN COMMANDS: help, board, epic, issue, open, project, sprint. Examples: issue comment add, issue view. Create issue: jira issue create -tBug -s"New Bug" -yHigh -lbug -lurgent -b"Description" --project <PROJECT_KEY>. List issues (JQL): jira issue list -q "assignee = currentUser() AND priority = Medium AND status = 'To Do'" -p <PROJECT_KEY>; use --fields to customize. Run JQL: jira issue list -q "summary ~ cli". View history: jira issue list --history. Sprint queries: jira sprint list --current -a$(jira me), jira sprint list SPRINT_ID --order-by rank --reverse. Assign/Move issues: jira issue assign ISSUE-1 $(jira me) --project <PROJECT_KEY>, jira issue move ISSUE-1 'In Progress'. Clone issue: jira issue clone ISSUE-1 -H'find:replace'. Create epic: jira epic create -n'Epic Name' -yHigh -lurgent -b'Description'. ALL commands require -p (project key). Ensure the project key is provided."
     alias: jira
     content: |
       workspace="{{ .workspace_name }}"
