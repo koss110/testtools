@@ -1,7 +1,7 @@
 tools:
   - name: jira_cli
     image: ghcr.io/kubiyabot/jira-cli:latest
-    description: "Runs JIRA CLI commands - receives the command to run as an argument"
+    description: "Runs JIRA CLI commands - receives the command to run as an argument. USAGE jira <command> <subcommand> [flags]. MAIN COMMANDS: help,board,epic,issue,open,project,sprint. Examples: issue comment add, issue view"
     alias: jira
     content: |
       workspace="{{ .workspace_name }}"
