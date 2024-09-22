@@ -1,4 +1,4 @@
-from kubiya_sdk.tools import Tool
+from kubiya_sdk.tools.models import Tool
 
 JENKINS_ICON_URL = "https://cdn-icons-png.flaticon.com/256/25/25231.png"
 
