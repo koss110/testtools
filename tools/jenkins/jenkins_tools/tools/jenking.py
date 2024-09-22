@@ -1,30 +1,15 @@
 from kubiya_sdk.tools import Arg
-from kubiya_sdk.tools.base import JenkinsTool
+from .base import JenkinsTool
 from kubiya_sdk.tools.registry import tool_registry
 
 hello_world = JenkinsTool(
     name="hello_world",
-    description="A simple Hello World tool for Jenkins",
+    description="Hello world",
     content="""
-#!/usr/bin/env python3
-import sys
-
-def main():
-    name = sys.argv[1] if len(sys.argv) > 1 else "World"
-    print(f"Hello, {name}!")
-
-if __name__ == "__main__":
-    main()
-    """,
-    args=[
-        Arg(
-            name="name",
-            type="string",
-            description="Name to greet",
-            required=False,
-            default="World"
-        )
-    ]
+#!/bin/sh
+echo 'Hello world'
+""",
+    args=[]
 )
 
 tool_registry.register("jenkins", hello_world)
