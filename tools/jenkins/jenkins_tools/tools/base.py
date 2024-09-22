@@ -13,7 +13,7 @@ class JenkinsTool(Tool):
             image="python:slim",
             content=content,
             args=args,
-            env=env,
+            secrets=env,
             long_running=long_running,
             mermaid=mermaid_diagram
         )
