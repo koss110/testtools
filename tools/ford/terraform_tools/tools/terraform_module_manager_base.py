@@ -1,6 +1,5 @@
-# File: terraform_module_manager_base.py
 
-from kubiya_sdk.tools.models import Tool, Arg, FileSpec
+from kubiya_sdk.tools import Tool, Arg, FileSpec
 import json
 import os
 
@@ -15,13 +14,22 @@ class TerraformModuleManager(Tool):
         script_content = f"""
 import subprocess
 import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Install required packages
+install('requests')
+install('GitPython')
+install('jira')
+
 import os
 import json
 import requests
 from git import Repo
 from jira import JIRA
 
-# ... (previous functions remain unchanged)
+# ... (rest of the script content remains the same)
 
 def execute_terraform_action(action, github_repo, repo_folder, services_required, jira_ticket_id, **kwargs):
     try:
